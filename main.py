@@ -51,7 +51,7 @@ while prove == True:
     max = int(input())
     print('Введите число повторяющихся элементов не меньше 1: ', end='')
     kolodinakel = int(input())
-    if n > 2 and min > 0 and max > 0 and kolodinakel > 0:
+    if (n > 2 and n % 10 == 0) and min > 0 and max > 0 and (kolodinakel > 0 and kolodinakel & 10 ==0):
         prove = False
     else:
         print("ДАННЫЕ ВВЕДЕНЫ НЕКОРРЕКТНО. ПОРОБУЙТЕ ЕЩЁ РАЗ")
