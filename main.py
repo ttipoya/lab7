@@ -9,23 +9,19 @@
 from itertools import product
 from random import randint
 prove = True
-class Password:
-    def __init__(self, col_el, zhena_min, zhena_max, kol_odinak_el):
+class KOMPLEK_ZHENA:
+    def __init__(self,col_el,zhena_min,zhena_max):
         self.col_el = col_el
         self.firm = []
-        self.cena = []
-        self.kol = 0
         self.zhena_min = zhena_min
         self.zhena_max = zhena_max
-        self.suma = 0
-        self.maxi = 0
-        self.maxikomb = ''
-        self.kol_odinak_el = kol_odinak_el
+        self.cena = []
     def firma(self):
-        for i in range(1, self.col_el+1):
-            self.firm.append('K'+str(i))
+        for i in range(1, self.col_el + 1):
+            self.firm.append('K' + str(i))
         return
     def rangi(self):
+        self.firma()
         print("Цена каждой комплектующей:")
         for i in range(1, self.col_el + 1):
             self.cena.append(randint(self.zhena_min, self.zhena_max))
@@ -33,10 +29,17 @@ class Password:
         print()
         print("---------------------------")
         return
+class KOMPUTERI():
+    def __init__(self,firma,col_el,kol_odinak_el,cena):
+        self.col_el = col_el
+        self.f = firma
+        self.maxi = 0
+        self.maxikomb = ''
+        self.kol_odinak_el = kol_odinak_el
+        self.cena = cena
     def usl(self):
-        self.firma()
-        self.rangi()
-        for i in product(self.firm, repeat=self.col_el):
+        komb.rangi()
+        for i in product(self.f, repeat=self.col_el):
             for m in range(0, self.col_el):
                 for j in range(1, self.col_el + 1):
                     if int(i[m][-1]) == j and i.count(i[m]) <= self.kol_odinak_el:
@@ -50,23 +53,25 @@ class Password:
         print('Маскимальная цена:',self.maxi)
         print('Комбинация:', self.maxikomb)
         return
+
 while prove == True:
     print('Введите кол-во комплектующих (больше 2): ', end='')
     n = int(input())
-    print('Введите минимальную цену(неотрицательную): ', end='')
+    print('Введите минимальную цену(неотрицательное): ', end='')
     min = int(input())
-    print('Введите максимальную цену(неотрицательную): ', end='')
+    print('Введите максимальную цену(неотрицательное): ', end='')
     max = int(input())
     print('Введите число повторяющихся элементов не меньше 1: ', end='')
     kolodinakel = int(input())
-    if n > 2 and min > 0 and max > 0 and (kolodinakel > 0 and kolodinakel & 10 ==0):
+    if n > 2 and min > 0 and max > 0 and kolodinakel > 0:
         prove = False
     else:
         print("ДАННЫЕ ВВЕДЕНЫ НЕКОРРЕКТНО. ПОРОБУЙТЕ ЕЩЁ РАЗ")
         print("---------------------------")
 print("---------------------------")
-pas = Password(n,min,max,kolodinakel)
-pas.usl()
+komb = KOMPLEK_ZHENA(n,min,max)
+komp = KOMPUTERI(komb.firm,n,kolodinakel,komb.cena)
+komp.usl()
 
 
 
